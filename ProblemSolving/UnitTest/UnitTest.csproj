@@ -48,6 +48,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataStructure\BinarySearchTreeTest.cs" />
+    <Compile Include="DataStructure\LinkedListTest.cs" />
     <Compile Include="GeeksForGeeksTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

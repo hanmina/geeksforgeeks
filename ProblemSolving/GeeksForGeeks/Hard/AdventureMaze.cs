@@ -12,7 +12,8 @@ namespace GeeksForGeeks.Hard
     public class AdventureMaze
     {
 
-        public static int CountPath = 0;
+        public static Int64 CountPath = 0;
+        public static int MaxVal = 0;
 
         public static int[,] FeedInput(int n)
         {
@@ -22,7 +23,8 @@ namespace GeeksForGeeks.Hard
             {
                 for (int j = 0; j < n; j++)
                 {
-                    a[i, j] = rd.Next(1, 4);
+                    //a[i, j] = rd.Next(1, 4);
+                    a[i, j] = 3;
                 }
             }
 
@@ -76,7 +78,7 @@ namespace GeeksForGeeks.Hard
                     s = BackTrack(ref i, ref j, ref curMax, n, s);
                 }
 
-                
+
 
             } while (s.Count > 0);
 
@@ -108,36 +110,40 @@ namespace GeeksForGeeks.Hard
             return s;
         }
 
-        public static void printRobotPaths(string path, int row, int col, int r_idx, int c_idx, int[,] a, int v)
+        public static void FindPath(int n, int x, int y, int[,] a, int v, int curVal)
         {
-            if ((r_idx == row - 1) && (c_idx == col - 1))
+            if ((x == n - 1) && (y == n - 1))
             {
                 CountPath++;
+                MaxVal = Math.Max(MaxVal, curVal);
+                curVal = 0;
                 return;
             }
 
-            if (r_idx >= row || c_idx >= col)
-                return;
-
-            if (v == 1)
+            if (x >= n || y >= n)
             {
-                printRobotPaths(path + ">" + v.ToString(), row, col, r_idx + 1, c_idx, a, a[r_idx, c_idx]);
+                curVal = 0;
                 return;
             }
 
-            if (v == 2)
+            if (v == 1 && y < n - 1)
             {
-                printRobotPaths(path + "V" + v.ToString(), row, col, r_idx, c_idx + 1, a, a[r_idx, c_idx]);
+                FindPath(n, x, y + 1, a, a[x, y + 1], a[x, y + 1] + curVal);
+                return;
+            }
+
+            if (v == 2 && x < n - 1)
+            {
+                FindPath(n, x + 1, y, a, a[x + 1, y], a[x + 1, y] + curVal);
                 return;
             }
             if (v == 3)
             {
-                printRobotPaths(path + ">" + v.ToString(), row, col, r_idx, c_idx + 1, a, a[r_idx, c_idx]);
-                printRobotPaths(path + "V" + v.ToString(), row, col, r_idx + 1, c_idx, a, a[r_idx, c_idx]);
-                return;
+                if (y < n - 1)
+                    FindPath(n, x, y + 1, a, a[x, y + 1], a[x, y + 1] + curVal);
+                if (x < n - 1)
+                    FindPath(n, x + 1, y, a, a[x + 1, y], a[x + 1, y] + curVal);
             }
-            //printRobotPaths(path + 'D', row, col, r_idx, c_idx + 1, a, a[r_idx, c_idx]);
-            //printRobotPaths(path + 'R', row, col, r_idx + 1, c_idx, a, a[r_idx, c_idx]);
         }
     }
 }

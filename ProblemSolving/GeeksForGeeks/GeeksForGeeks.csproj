@@ -40,10 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataStructure\BinarySearchTree.cs" />
+    <Compile Include="DataStructure\LinkedList.cs" />
     <Compile Include="Hard\AdventureMaze.cs" />
+    <Compile Include="Hard\BikeRacing.cs" />
     <Compile Include="Hard\ClosestPlaindrome.cs" />
     <Compile Include="Microsoft\LargeNumberSummation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Questions\BikeRacing.txt" />
+    <Content Include="Questions\BikeRacing-inputs.txt" />
+    <Content Include="Questions\BikeRacing-intput2.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
